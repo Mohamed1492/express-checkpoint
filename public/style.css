@@ -1,0 +1,144 @@
+/* default style */
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: Arial, Helvetica, sans-serif;
+}
+/* general style of body */
+body{
+min-height: 500px;
+background: url(./images/pexels-ian-turnell-709552.jpg) no-repeat;
+background-position: center;
+background-size: cover;
+}
+
+/* style of header */
+.header{
+position: fixed;
+top: 0;
+left: 0;
+width: 100% ;
+padding: 20px 10%;
+display: flex;
+justify-content: space-around;
+align-items: center;
+z-index: 100;
+
+}
+
+.header ::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(50px);
+    z-index: -1;
+}
+.header::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, whitesmoke, transparent);
+    transition: .5s;
+}
+
+.header:hover::after{
+    left: 100%;
+}
+
+/* Style of Logo */
+.Logo {
+font-size: 20px;
+color: whitesmoke;
+text-decoration: none;
+font-weight: 700;
+}
+/* navbar style */
+.navbar a{
+font-size: 15px;
+color: whitesmoke;
+text-decoration: none;
+font-weight: 500;
+margin-left: 30px;
+}
+/* checkbox style */
+#check{
+    display: none;
+}
+/* style of menu icon */
+.icons{
+    right: 5%;
+    position: absolute;
+font-size: 40px;
+color: whitesmoke;
+cursor: pointer;
+display: none;
+}
+
+h1{
+    margin-top: 100px;
+    color: white;
+}
+
+/* responsive display */
+@media (max-width: 992px){
+    .header{
+        padding:20px 5%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+@media (max-width: 768px){
+    .icons{
+        display: inline-flex;
+        margin-right: 50px;
+        margin-bottom: 30px;
+    }
+    #check:checked~.icons #menu-icon{
+      display: none;  
+    }
+    .icons #close-icon{
+        display: none;
+    }
+    #check:checked~.icons #close-icon{
+        display: block;  
+      }
+
+    .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: rgba(0,0,0,.3);
+        backdrop-filter: blur(50px);  
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.3); 
+        overflow: hidden;
+        transition: .3s ease;
+    }
+
+    #check:checked~.navbar{
+        height: 180px;
+      }
+    .navbar a{
+        display: block;
+        font-size: 20px;
+        margin: 20px 0;
+        text-align: center;
+        transform: translateY(-50px);
+        opacity: 0;
+        transition: .3s ease;
+    }
+    #check:checked~.navbar a{
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: calc(.15s*var(--i));
+      }
+}
